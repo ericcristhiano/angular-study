@@ -1,0 +1,65 @@
+<div class="container">
+  <section>
+    <h2>{{ queryParams.departure_city_name }} <i class="glyphicon glyphicon-arrow-right"></i> {{ queryParams.destination_city_name }}</h2>
+
+    <!-- FLIGHT  -->
+    <article *ngFor="let f of getFlightsOnCurrentPage()">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4><strong>Emirates</strong></h4>
+              <div class="row">
+                <div class="col-sm-3">
+                  <img class="img-responsive airline-logo" [src]="f.airline.logo" alt="Emirates logo">
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="list-box">
+                    <label class="control-label">From:</label>
+                    <div><span class="time">{{f.departure_date}} {{f.departure_time}}</span></div>
+                    <div><span class="place">{{f.departure_city_name}}</span></div>
+                  </div>
+
+                  <div class="list-box">
+                    <label class="control-label">To:</label>
+                    <div><span class="time">{{f.arrival_date}} {{f.arrival_time}}</span></div>
+                    <div><span class="place">{{f.destination_city_name}}</span></div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="list-box">
+                    <label class="control-label">Duration:</label>
+                    <div><span class="time">{{f.duration_of_the_flight}}</span></div>
+                  </div>
+
+                  <div class="list-box">
+                    <label class="control-label">Flight Code:</label>
+                    <div><span class="place">{{f.flight_code}}</span></div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3 text-right">
+
+                  <h3 *ngFor="let fp of f.fare_price" class="price text-danger">{{fp.flight_class}}: <strong>{{fp.value | currency:'USD':true}}</strong></h3>
+                  <div>
+                    <a [routerLink]="['/flights', f.flight_id, 'booking']" class="btn btn-primary">Booking</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <!-- /FLIGHT  -->
+
+    <div class="text-center">
+      <ul class="pagination">
+        <li [class.active]="n==currentPage" *ngFor="let n of getPaginationArrayNumber()"><a (click)="changePage(n)">{{n}}</a></li>
+      </ul>
+    </div>
+
+  </section>
+</div>

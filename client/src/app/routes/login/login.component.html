@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-push-3">
+      <h2>Log in to your account</h2>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form role="form" [formGroup]="user" (ngSubmit)="onSubmit()">
+              <div *ngIf="user.hasError('auth')" class="alert alert-danger list-unstyled">
+                <p>{{user.getError('auth')}}</p>
+              </div>
+              <app-form-group-input
+                [formGroup]="user"
+                label="Email Address"
+                name="email"
+                type="text"
+              >
+              </app-form-group-input>
+
+            <app-form-group-input
+              [formGroup]="user"
+              label="Password"
+              name="password"
+              type="password"
+            >
+            </app-form-group-input>
+
+            <div class="text-right">
+              <button [disabled]="user.invalid" type="submit" class="btn btn-primary">Log In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

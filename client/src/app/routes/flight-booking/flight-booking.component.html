@@ -1,0 +1,117 @@
+<div class="container">
+  <h2>Booking</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <form role="form" (ngSubmit)="onSubmit()" [formGroup]="booking">
+        <h3 class="clearfix">Passenger(s) Details <button (click)="addPassenger()" type="button" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Add passenger</button></h3>
+
+        <section formArrayName="passengers">
+
+          <div class="panel panel-default" *ngFor="let p of passengers.controls; let i = index">
+            <div class="panel-body">
+              <h4>Passenger #{{ i + 1 }} <button *ngIf="passengers.length != 1" (click)="removePassenger(i)" class="btn btn-danger pull-right" type="button"><i class="glyphicon glyphicon-remove"></i></button></h4>
+              <div class="row">
+                <!--<div class="col-sm-3">-->
+                  <!--<label class="control-label">Title:</label>-->
+                  <!--<select class="form-control">-->
+                    <!--<option value="mr">Mr.</option>-->
+                    <!--<option value="mrs">Mrs.</option>-->
+                  <!--</select>-->
+                <!--</div>-->
+
+                <div class="col-sm-6">
+                  <app-form-group-select
+                    [formGroup]="p"
+                    label="Category"
+                    name="flight_class"
+                    [list]="categories"
+                    key="value"
+                    value="value"
+                    emptyState="Select a Category"
+                  >
+                  </app-form-group-select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <app-form-group-input
+                    [formGroup]="p"
+                    label="First Name"
+                    name="first_name"
+                    type="text"
+                  >
+                  </app-form-group-input>
+                </div>
+                <div class="col-sm-6">
+                  <app-form-group-input
+                    [formGroup]="p"
+                    label="Last Name"
+                    name="last_name"
+                    type="text"
+                  >
+                  </app-form-group-input>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary" [disabled]="booking.invalid">
+              Continue for Payment
+            </button>
+          </div>
+        </section>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <h3>Flight</h3>
+      <aside>
+        <article>
+          <div>
+            <ul class="list-group" *ngIf="flight">
+              <li class="list-group-item">
+                <h5>
+                  <strong class="airline">{{ flight.airline.airline_name }} {{ flight.flight_code }}</strong>
+                </h5>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div><span class="time">{{ flight.departure_time }}</span></div>
+                        <div><small class="date">{{ flight.departure_date }}</small></div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div><span class="place">{{ flight.departure_city_name }}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 text-center">
+                    <i class="glyphicon glyphicon-arrow-down"></i>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div><span class="time">{{ flight.arrival_time }}</span></div>
+                        <div><small class="date">{{ flight.arrival_date }}</small></div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div><span class="place">{{ flight.destination_city_name }}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </aside>
+    </div>
+  </div>
+</div>
+<br>

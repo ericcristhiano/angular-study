@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form role="form" [formGroup]="flight" (ngSubmit)="onSubmit()">
+      <div class="row">
+
+        <div class="col-sm-4">
+          <h4 class="form-heading">1. Flight Origin</h4>
+
+          <app-form-group-select
+              [formGroup]="flight"
+              label="Departure city name"
+              name="departure_city_name"
+              [list]="cities"
+              key="city_name"
+              value="city_name"
+              emptyState="Select a city"
+          >
+          </app-form-group-select>
+
+        </div>
+        <div class="col-sm-4">
+          <h4 class="form-heading">2. Flight Destination</h4>
+
+          <app-form-group-select
+            [formGroup]="flight"
+            label="Destination city name"
+            name="destination_city_name"
+            [list]="cities"
+            key="city_name"
+            value="city_name"
+            emptyState="Select a city"
+          >
+            <p *ngIf="flight.controls['destination_city_name'].hasError('mismatch')" class="help-block">
+              Destination city name needs to be different of Departure City Name
+            </p>
+          </app-form-group-select>
+
+
+        </div>
+        <div class="col-sm-4">
+          <h4 class="form-heading">3. Date of Flight</h4>
+
+          <app-form-group-input
+            [formGroup]="flight"
+            label="Departure date"
+            name="departure_date"
+            type="date"
+          >
+          </app-form-group-input>
+
+          <div class="form-group">
+            <button [disabled]="flight.invalid" type="submit" class="btn btn-primary btn-block">Search Flights</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

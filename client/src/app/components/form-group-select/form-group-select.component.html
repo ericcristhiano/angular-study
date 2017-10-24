@@ -1,0 +1,12 @@
+<div class="form-group" [class.has-error]="formGroup.get(name).invalid&&formGroup.get(name).touched" [class.has-success]="!formGroup.get(name).invalid&&formGroup.get(name).touched" [formGroup]="formGroup">
+  <label for="{{name}}" class="control-label">{{label}}: </label>
+  <select id="{{name}}" class="form-control" [formControlName]="name">
+    <option value>{{ emptyState }}</option>
+    <option *ngFor="let l of list" value="{{ l[key]}}">{{ l[value] }}</option>
+  </select>
+
+  <div *ngIf="formGroup.get(name).invalid&&formGroup.get(name).touched" class="help-block">
+    <p *ngFor="let eKey of formGroup.get(name).errors | arrayKeys" >{{ eKey | returnErrorMessage:label }}</p>
+    <ng-content></ng-content>
+  </div>
+</div>

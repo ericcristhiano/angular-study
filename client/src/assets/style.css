@@ -1,0 +1,109 @@
+@media screen and (min-width: 768px) {
+    .navbar-brand {
+        padding-left: 0;
+    }
+}
+
+.rating {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.rating li {
+    display: inline-block;
+}
+.rating li > .glyphicon-star {
+    font-size: 20px;
+}
+.glyphicon-star {
+    color: #ffc412 !important;
+}
+
+.hotel-list {
+    padding: 15px;
+}
+
+.hotel-list h1,
+.hotel-list h2,
+.hotel-list h3,
+.hotel-list h4,
+.hotel-list h5,
+.hotel-list h6 {
+    padding: 0;
+    margin: 0;
+}
+
+.list-box {
+    margin-bottom: 30px;
+}
+
+.price {
+    font-size:  14px;
+    text-transform: uppercase;
+}
+
+.price strong {
+    display: block;
+    font-size: 24px;
+}
+
+.logo {
+    height: 55px;
+}
+
+.navbar-inverse {
+    padding: 15px 0px;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+footer {
+    background: #337ab7;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin-top: 10px;
+}
+
+main {
+    margin-bottom: 40px;
+}
+
+@keyframes fadeInFadeOut{
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+
+.toast-list{
+  display: flex;
+  flex-direction: column-reverse;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1000;
+}
+.toast{
+  animation: fadeInFadeOut 3s ease forwards;
+  will-change: opacity, transform;
+}
